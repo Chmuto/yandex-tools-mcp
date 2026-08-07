@@ -17,7 +17,8 @@ MCP server for [Yandex Direct API](https://yandex.com/dev/direct/) — PPC campa
 
 - **Campaigns** — list, inspect, create, update, and manage lifecycle (suspend/resume/archive/delete)
 - **Ad groups** — list, create, delete, with region targeting
-- **Ads** — list and create text ads, manage moderation/lifecycle
+- **Ads** — list and create text ads (optionally with an image), manage moderation/lifecycle
+- **Ad images** — upload images to the account library (from base64 or a URL) and attach them to text ads
 - **Keywords & bids** — list with current bids, add keywords, set search/network bids (in account currency), set negative keywords
 - **Statistics** — one flexible `get-report` covering any report type, fields, and date range
 - **Account** — balance and geo-region reference
@@ -88,8 +89,10 @@ To operate on a real account, add `-e YANDEX_DIRECT_LIVE=1`. For agency/managed 
 | `create-adgroup` | write | Create an ad group with region targeting |
 | `delete-adgroup` | write | Delete an ad group |
 | `list-ads` | read | List ads with text and moderation status |
-| `create-text-ad` | write | Create a text ad in an ad group |
+| `create-text-ad` | write | Create a text ad in an ad group, optionally with an image (`ad_image_hash`) |
 | `manage-ad` | write | Moderate/suspend/resume/archive/unarchive/delete an ad |
+| `upload-ad-image` | write | Upload an image (base64 or URL) to the account image library, returns an `AdImageHash` |
+| `list-ad-images` | read | List images already uploaded to the account image library |
 | `list-keywords` | read | List keywords with current search/network bids |
 | `add-keywords` | write | Add keywords to an ad group |
 | `set-bids` | write | Set search/network bids on keywords (in account currency) |
@@ -107,6 +110,7 @@ Once configured, ask Claude:
 - "List my Direct campaigns and their budgets"
 - "Create a sandbox campaign named 'Summer Sale' with a 500 daily budget"
 - "Add these keywords to ad group 12345 and set bids to 15"
+- "Upload this image and attach it to a new ad in group 12345" (network/RSYA placements need an image)
 - "Show me clicks, cost, and CTR by campaign for last month"
 - "What's my account balance?"
 
@@ -120,7 +124,8 @@ Once configured, ask Claude:
 
 - **Кампании** — список, детали, создание, обновление, управление статусом (пауза/возобновление/архив/удаление)
 - **Группы объявлений** — список, создание, удаление, с таргетингом по регионам
-- **Объявления** — список и создание текстовых объявлений, управление модерацией/статусом
+- **Объявления** — список и создание текстовых объявлений (в т.ч. с картинкой), управление модерацией/статусом
+- **Картинки объявлений** — загрузка изображений в библиотеку аккаунта (base64 или URL) и прикрепление к текстовым объявлениям
 - **Ключевые фразы и ставки** — список с текущими ставками, добавление фраз, установка ставок на поиске/в сетях (в валюте аккаунта), минус-фразы
 - **Статистика** — один гибкий `get-report` с любым типом отчёта, полями и диапазоном дат
 - **Аккаунт** — баланс и справочник регионов
@@ -191,8 +196,10 @@ claude mcp add yandex-direct \
 | `create-adgroup` | запись | Создать группу объявлений с таргетингом по регионам |
 | `delete-adgroup` | запись | Удалить группу объявлений |
 | `list-ads` | чтение | Список объявлений с текстом и статусом модерации |
-| `create-text-ad` | запись | Создать текстовое объявление в группе |
+| `create-text-ad` | запись | Создать текстовое объявление в группе, опционально с картинкой (`ad_image_hash`) |
 | `manage-ad` | запись | Модерация/пауза/возобновление/архив/удаление объявления |
+| `upload-ad-image` | запись | Загрузить картинку (base64 или URL) в библиотеку изображений, вернёт `AdImageHash` |
+| `list-ad-images` | чтение | Список картинок, уже загруженных в библиотеку аккаунта |
 | `list-keywords` | чтение | Список ключевых фраз с текущими ставками |
 | `add-keywords` | запись | Добавить ключевые фразы в группу |
 | `set-bids` | запись | Установить ставки на поиске/в сетях (в валюте аккаунта) |

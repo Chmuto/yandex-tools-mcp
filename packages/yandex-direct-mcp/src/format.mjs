@@ -1,7 +1,7 @@
 // Yandex Direct add/update/action calls return a per-item results array where each
-// item carries an id (Id, or KeywordId for keywordbids.set) plus optional
-// Warnings/Errors ({ Code, Message, Details }). summarizeResults folds that into a
-// caller-friendly text summary.
+// item carries an id (Id, KeywordId for keywordbids.set, or AdImageHash for
+// adimages.add) plus optional Warnings/Errors ({ Code, Message, Details }).
+// summarizeResults folds that into a caller-friendly text summary.
 
 export function summarizeResults(result) {
   const items =
@@ -16,7 +16,7 @@ export function summarizeResults(result) {
   const problems = [];
 
   for (const item of items) {
-    const id = item.Id ?? item.KeywordId;
+    const id = item.Id ?? item.KeywordId ?? item.AdImageHash;
     if (item.Errors?.length) {
       problems.push(
         `ID ${id ?? '?'}: ${item.Errors.map((e) => `${e.Message}${e.Details ? ` (${e.Details})` : ''}`).join('; ')}`,

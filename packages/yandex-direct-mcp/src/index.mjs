@@ -5,6 +5,7 @@ import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js'
 import { createClient } from './client.mjs';
 import { registerAccountTools } from './tools/account.mjs';
 import { registerAdGroupTools } from './tools/adgroups.mjs';
+import { registerAdImageTools } from './tools/adimages.mjs';
 import { registerAdTools } from './tools/ads.mjs';
 import { registerCampaignTools } from './tools/campaigns.mjs';
 import { registerKeywordTools } from './tools/keywords.mjs';
@@ -22,11 +23,12 @@ if (command === 'auth') {
 async function runServer() {
   const client = createClient();
 
-  const server = new McpServer({ name: 'yandex-direct', version: '1.0.0' });
+  const server = new McpServer({ name: 'yandex-direct', version: '1.1.0' });
 
   registerCampaignTools(server, client);
   registerAdGroupTools(server, client);
   registerAdTools(server, client);
+  registerAdImageTools(server, client);
   registerKeywordTools(server, client);
   registerReportTools(server, client);
   registerAccountTools(server, client);

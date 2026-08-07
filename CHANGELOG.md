@@ -4,6 +4,27 @@ All notable changes to the packages in this monorepo are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and each package follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 2026-08-08
+
+### yandex-direct-mcp — 1.1.0
+
+#### Added
+- `upload-ad-image` — uploads an image to the account's ad-image library
+  (`AdImages.add`) from either base64 bytes or a URL, returning an
+  `AdImageHash`. `create-text-ad` gained an optional `ad_image_hash` param
+  that attaches the image to the ad via the documented `TextAd.AdImageHash`
+  field — no new ad type needed.
+- `list-ad-images` — lists images already in the account library
+  (`AdImages.get`), with hash, name, type, and attachment status.
+- Both new tools follow the existing sandbox/LIVE pattern
+  (`YANDEX_DIRECT_LIVE=1`). Motivated by an RSYA (network) campaign launched
+  without images — network placements need one, and the account had none.
+
+#### Fixed
+- `summarizeResults` (format.mjs) now also recognizes `AdImageHash` as an
+  item's id, so `upload-ad-image` surfaces the hash in its "Succeeded: ..."
+  summary line instead of falling through to a bare "Done."
+
 ## 2026-07-08
 
 ### yandex-direct-mcp — 1.0.0
