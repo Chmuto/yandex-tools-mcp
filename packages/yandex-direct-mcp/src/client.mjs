@@ -6,6 +6,8 @@
 //   - reportRequest(): the separate Reports service, which returns TSV and may
 //     reply 201/202 ("report is being prepared") requiring polling.
 
+import { parseJsonPreservingBigInts, stringifyWithRawIds } from './bignum.mjs';
+
 const SANDBOX_BASE = 'https://api-sandbox.direct.yandex.com/json/v5/';
 const LIVE_BASE = 'https://api.direct.yandex.com/json/v5/';
 
@@ -52,7 +54,7 @@ export function createClient() {
     const response = await fetch(`${base}${service}`, {
       method: 'POST',
       headers: baseHeaders(),
-      body: JSON.stringify({ method, params }),
+      body: stringifyWithRawIds({ method, params }),
     });
 
     const { text, data } = await readJson(response, 'Yandex Direct API error');
@@ -87,7 +89,7 @@ export function createClient() {
       skipColumnHeader: 'false',
       skipReportSummary: 'true',
     };
-    const body = JSON.stringify({ params: { Format: 'TSV', ...params } });
+    const body = stringifyWithRawIds({ params: { Format: 'TSV', ...params } });
 
     for (let attempt = 0; attempt < maxAttempts; attempt++) {
       const response = await fetch(`${base}reports`, { method: 'POST', headers, body });
@@ -117,7 +119,7 @@ export function createClient() {
     const response = await fetch(url, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json; charset=utf-8' },
-      body: JSON.stringify({ method, token: getToken(), param, locale: 'en' }),
+      body: stringifyWithRawIds({ method, token: getToken(), param, locale: 'en' }),
     });
 
     const { text, data } = await readJson(response, 'Yandex Direct Live4 error');
@@ -146,7 +148,7 @@ export function createClient() {
 async function readJson(response, label) {
   const text = await response.text();
   try {
-    return { text, data: text ? JSON.parse(text) : {} };
+    return { text, data: text ? parseJsonPreservingBigInts(text) : {} };
   } catch {
     throw new Error(`${label} (${response.status}): ${text || 'unparseable response'}`);
   }

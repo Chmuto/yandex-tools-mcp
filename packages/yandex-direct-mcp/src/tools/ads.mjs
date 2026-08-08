@@ -77,17 +77,20 @@ export function registerAdTools(server, client) {
       description:
         'WRITE — changes an ad lifecycle state. moderate submits a draft for review; suspend/resume; archive/unarchive; delete removes it. Affects the SANDBOX account unless YANDEX_DIRECT_LIVE=1.',
       inputSchema: {
-        ad_id: z.number().describe('Ad ID'),
+        ad_id: z
+          .union([z.number(), z.string()])
+          .describe('Ad ID. Pass as a string for large IDs — JS numbers lose precision above 2^53.'),
         action: z
           .enum(['moderate', 'suspend', 'resume', 'archive', 'unarchive', 'delete'])
           .describe('Lifecycle action'),
       },
     },
     async ({ ad_id, action }) => {
+      const idStr = String(ad_id);
       const result = await client.directRequest('ads', action, {
-        SelectionCriteria: { Ids: [ad_id] },
+        SelectionCriteria: { Ids: [idStr] },
       });
-      return writeResult(`${action} ad ${ad_id}`, result);
+      return writeResult(`${action} ad ${idStr}`, result);
     },
   );
 }

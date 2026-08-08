@@ -68,7 +68,10 @@ export function registerKeywordTools(server, client) {
       description:
         'WRITE — sets search and/or network bids on keywords. Bids are given in account currency (e.g. rubles) and converted to micro-units. Affects the SANDBOX account unless YANDEX_DIRECT_LIVE=1 — check balance before raising bids on a live account.',
       inputSchema: {
-        keyword_ids: z.array(z.number()).min(1).describe('Keyword IDs to set bids for'),
+        keyword_ids: z
+          .array(z.union([z.number(), z.string()]))
+          .min(1)
+          .describe('Keyword IDs to set bids for. Pass as strings for large IDs — JS numbers lose precision above 2^53.'),
         bid: z.number().optional().describe('Search bid in account currency (converted to micro-units)'),
         context_bid: z
           .number()
@@ -81,7 +84,7 @@ export function registerKeywordTools(server, client) {
         throw new Error('Provide at least one of bid or context_bid.');
       }
       const keywordBids = keyword_ids.map((id) => {
-        const entry = { KeywordId: id };
+        const entry = { KeywordId: String(id) };
         if (bid != null) entry.Bid = toMicro(bid);
         if (context_bid != null) entry.ContextBid = toMicro(context_bid);
         return entry;
