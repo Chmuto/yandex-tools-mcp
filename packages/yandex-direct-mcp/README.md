@@ -2,7 +2,7 @@
 
 MCP server for [Yandex Direct API](https://yandex.com/dev/direct/) — PPC campaign management: campaigns, ad groups, ads, keywords, bids, and statistics.
 
-[![npm version](https://badge.fury.io/js/yandex-direct-mcp.svg)](https://www.npmjs.com/package/yandex-direct-mcp)
+[![npm version](https://img.shields.io/npm/v/%40chmuto%2Fyandex-direct-mcp.svg)](https://www.npmjs.com/package/@chmuto/yandex-direct-mcp)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 [English](#english) | [Русский](#русский)
@@ -35,7 +35,7 @@ MCP server for [Yandex Direct API](https://yandex.com/dev/direct/) — PPC campa
 ```bash
 export YANDEX_CLIENT_ID=your_client_id
 export YANDEX_CLIENT_SECRET=your_client_secret
-npx yandex-direct-mcp auth
+npx @chmuto/yandex-direct-mcp auth
 ```
 
 The same token works for both the sandbox and production environments.
@@ -49,7 +49,7 @@ The same token works for both the sandbox and production environments.
   "mcpServers": {
     "yandex-direct": {
       "command": "npx",
-      "args": ["-y", "yandex-direct-mcp"],
+      "args": ["-y", "@chmuto/yandex-direct-mcp"],
       "env": {
         "YANDEX_DIRECT_TOKEN": "your_oauth_token"
       }
@@ -63,7 +63,7 @@ The same token works for both the sandbox and production environments.
 ```bash
 claude mcp add yandex-direct \
   -e YANDEX_DIRECT_TOKEN=your_oauth_token \
-  -- npx -y yandex-direct-mcp
+  -- npx -y @chmuto/yandex-direct-mcp
 ```
 
 To operate on a real account, add `-e YANDEX_DIRECT_LIVE=1`. For agency/managed accounts, add `-e YANDEX_DIRECT_LOGIN=client_login`.
@@ -142,7 +142,7 @@ Once configured, ask Claude:
 ```bash
 export YANDEX_CLIENT_ID=ваш_client_id
 export YANDEX_CLIENT_SECRET=ваш_client_secret
-npx yandex-direct-mcp auth
+npx @chmuto/yandex-direct-mcp auth
 ```
 
 Один и тот же токен работает и в песочнице, и в боевом окружении.
@@ -156,7 +156,7 @@ npx yandex-direct-mcp auth
   "mcpServers": {
     "yandex-direct": {
       "command": "npx",
-      "args": ["-y", "yandex-direct-mcp"],
+      "args": ["-y", "@chmuto/yandex-direct-mcp"],
       "env": {
         "YANDEX_DIRECT_TOKEN": "ваш_oauth_токен"
       }
@@ -170,7 +170,7 @@ npx yandex-direct-mcp auth
 ```bash
 claude mcp add yandex-direct \
   -e YANDEX_DIRECT_TOKEN=ваш_oauth_токен \
-  -- npx -y yandex-direct-mcp
+  -- npx -y @chmuto/yandex-direct-mcp
 ```
 
 Для работы с боевым аккаунтом добавьте `-e YANDEX_DIRECT_LIVE=1`. Для агентских/управляемых аккаунтов добавьте `-e YANDEX_DIRECT_LOGIN=логин_клиента`.

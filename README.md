@@ -16,7 +16,7 @@ MCP servers for Yandex APIs — search, keyword research, webmaster tools, and w
 | [yandex-search-mcp](./packages/yandex-search-mcp) | Web search via Yandex Search API | [![npm](https://img.shields.io/npm/v/yandex-search-mcp)](https://www.npmjs.com/package/yandex-search-mcp) |
 | [yandex-webmaster-mcp](./packages/yandex-webmaster-mcp) | Site analytics, indexing & SEO via Yandex Webmaster API | [![npm](https://img.shields.io/npm/v/yandex-webmaster-mcp)](https://www.npmjs.com/package/yandex-webmaster-mcp) |
 | [yandex-metrika-mcp](./packages/yandex-metrika-mcp) | Web analytics & traffic data via Yandex Metrika API | [![npm](https://img.shields.io/npm/v/yandex-metrika-mcp)](https://www.npmjs.com/package/yandex-metrika-mcp) |
-| [yandex-direct-mcp](./packages/yandex-direct-mcp) | PPC campaign management (campaigns, ads, keywords, bids, stats) via Yandex Direct API | [![npm](https://img.shields.io/npm/v/yandex-direct-mcp)](https://www.npmjs.com/package/yandex-direct-mcp) |
+| [yandex-direct-mcp](./packages/yandex-direct-mcp) | PPC campaign management (campaigns, ads, keywords, bids, stats) via Yandex Direct API | [![npm](https://img.shields.io/npm/v/%40chmuto%2Fyandex-direct-mcp)](https://www.npmjs.com/package/@chmuto/yandex-direct-mcp) |
 
 ### Quick Start
 
@@ -95,7 +95,7 @@ MCP servers for Yandex APIs — search, keyword research, webmaster tools, and w
   "mcpServers": {
     "yandex-direct": {
       "command": "npx",
-      "args": ["-y", "yandex-direct-mcp"],
+      "args": ["-y", "@chmuto/yandex-direct-mcp"],
       "env": {
         "YANDEX_DIRECT_TOKEN": "your_oauth_token"
       }
@@ -140,7 +140,7 @@ claude --plugin-dir /path/to/yandex-tools-mcp
 | [yandex-search-mcp](./packages/yandex-search-mcp) | Веб-поиск через Yandex Search API | [![npm](https://img.shields.io/npm/v/yandex-search-mcp)](https://www.npmjs.com/package/yandex-search-mcp) |
 | [yandex-webmaster-mcp](./packages/yandex-webmaster-mcp) | Аналитика сайта, индексация и SEO через Яндекс Вебмастер API | [![npm](https://img.shields.io/npm/v/yandex-webmaster-mcp)](https://www.npmjs.com/package/yandex-webmaster-mcp) |
 | [yandex-metrika-mcp](./packages/yandex-metrika-mcp) | Веб-аналитика и данные о трафике через Яндекс Метрика API | [![npm](https://img.shields.io/npm/v/yandex-metrika-mcp)](https://www.npmjs.com/package/yandex-metrika-mcp) |
-| [yandex-direct-mcp](./packages/yandex-direct-mcp) | Управление РРС-кампаниями (кампании, объявления, фразы, ставки, статистика) через API Яндекс Директа | [![npm](https://img.shields.io/npm/v/yandex-direct-mcp)](https://www.npmjs.com/package/yandex-direct-mcp) |
+| [yandex-direct-mcp](./packages/yandex-direct-mcp) | Управление РРС-кампаниями (кампании, объявления, фразы, ставки, статистика) через API Яндекс Директа | [![npm](https://img.shields.io/npm/v/%40chmuto%2Fyandex-direct-mcp)](https://www.npmjs.com/package/@chmuto/yandex-direct-mcp) |
 
 ### Быстрый старт
 
@@ -219,7 +219,7 @@ claude --plugin-dir /path/to/yandex-tools-mcp
   "mcpServers": {
     "yandex-direct": {
       "command": "npx",
-      "args": ["-y", "yandex-direct-mcp"],
+      "args": ["-y", "@chmuto/yandex-direct-mcp"],
       "env": {
         "YANDEX_DIRECT_TOKEN": "ваш_oauth_токен"
       }

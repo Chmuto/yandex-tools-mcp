@@ -34,7 +34,7 @@
     },
     "yandex-direct": {
       "command": "npx",
-      "args": ["-y", "yandex-direct-mcp"],
+      "args": ["-y", "@chmuto/yandex-direct-mcp"],
       "env": {
         "YANDEX_DIRECT_TOKEN": "${YANDEX_DIRECT_TOKEN}",
         "YANDEX_DIRECT_LIVE": "${YANDEX_DIRECT_LIVE}",
